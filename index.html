@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ロシア語基本単語100</title>
+    <meta name="description" content="最初に学ぶべきロシア語基本単語100語">
+    <meta name="theme-color" content="#1a202c">
+    
+    <!-- PWA設定 -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icons/icon-192x192.png" type="image/png">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    
+    <!-- スタイル -->
+    <style>
+        :root {
+            --primary-dark: #1a202c;
+            --secondary-dark: #2d3748;
+            --text-dark: #e2e8f0;
+            --accent-dark: #4299e1;
+            --primary-light: #f7fafc;
+            --secondary-light: #edf2f7;
+            --text-light: #2d3748;
+            --accent-light: #3182ce;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            background-color: var(--primary-dark);
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        body.light-mode {
+            background-color: var(--primary-light);
+            color: var(--text-light);
+        }
+
+        /* ヘッダー */
+        header {
+            background-color: var(--secondary-dark);
+            padding: 1rem 2rem;
+            border-bottom: 3px solid var(--accent-dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        body.light-mode header {
+            background-color: var(--secondary-light);
+            border-bottom-color: var(--accent-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            color: var(--accent-dark);
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        body.light-mode h1 {
+            color: var(--accent-light);
+        }
+
+        /* コントロールバー */
+        .controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        button {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--accent-dark);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        body.light-mode button {
+            background-color: var(--accent-light);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .mode-btn {
+            background-color: var(--secondary-dark);
+        }
+
+        body.light-mode .mode-btn {
+            background-color: var(--secondary-light);
+            color: var(--text-light);
+        }
+
+        /* メインコンテンツ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* 単語カード */
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .word-card {
+            background-color: var(--secondary-dark);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 5px solid var(--accent-dark);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        body.light-mode .word-card {
+            background-color: var(--secondary-light);
+            border-left-color: var(--accent-light);
+        }
+
+        .word-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .word-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .russian-word {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        body.light-mode .russian-word {
+            color: var(--accent-light);
+        }
+
+        .transcription {
+            font-size: 1rem;
+            color: #a0aec0;
+            margin-bottom: 0.5rem;
+        }
+
+        body.light-mode .transcription {
+            color: #718096;
+        }
+
+        .translation {
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+        }
+
+        body.light-mode .translation {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .audio-btn {
+            padding: 0.5rem 1rem;
+            background-color: #48bb78;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .audio-btn:hover {
+            background-color: #38a169;
+        }
+
+        .category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: var(--accent-dark);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        body.light-mode .category {
+            background-color: var(--accent-light);
+        }
+
+        /* フッター */
+        footer {
+            background-color: var(--secondary-dark);
+            color: var(--text-dark);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 3px solid var(--accent-dark);
+        }
+
+        body.light-mode footer {
+            background-color: var(--secondary-light);
+            color: var(--text-light);
+            border-top-color: var(--accent-light);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-link {
+            color: var(--accent-dark);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        body.light-mode .contact-link {
+            color: var(--accent-light);
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .word-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .word-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        /* ローディング */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+        }
+
+        /* 通知 */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-dark);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+            display: none;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        body.light-mode .notification {
+            background-color: var(--accent-light);
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-content">
+            <h1>🇷🇺 ロシア語基本単語100</h1>
+            <div class="control-group">
+                <button id="themeToggle" class="mode-btn">
+                    <span id="themeIcon">☀️</span>
+                    <span id="themeText">ライトモード</span>
+                </button>
+                <button id="languageToggle" class="mode-btn">
+                    <span id="languageIcon">🇯🇵</span>
+                    <span id="languageText">日本語表示</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <div class="container">
+        <div class="controls">
+            <div class="control-group">
+                <button id="playAllAudio" class="audio-btn">
+                    🔊 全ての音声を再生
+                </button>
+                <button id="shuffleWords">
+                    🔀 単語をシャッフル
+                </button>
+            </div>
+        </div>
+
+        <div class="word-grid" id="wordGrid">
+            <!-- 単語カードはJavaScriptで生成 -->
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-content">
+            <p>Contact us</p>
+            <a href="mailto:mementomorikatsu@gmail.com" class="contact-link">
+                mementomorikatsu@gmail.com
+            </a>
+            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                このアプリはホーム画面に追加してオフラインで使用できます
+            </p>
+        </div>
+    </footer>
+
+    <!-- 通知 -->
+    <div id="notification" class="notification"></div>
+
+    <script>
+        // 単語データ
+        const words = [
+            {
+                category: "代名詞",
+                russian: "Я",
+                transcription: "(Ya)",
+                english: "I",
+                japanese: "私"
+            },
+            {
+                category: "代名詞",
+                russian: "Ты",
+                transcription: "(Ty)",
+                english: "You (singular, informal)",
+                japanese: "あなた (親しい間柄)"
+            },
+            {
+                category: "代名詞",
+                russian: "Он",
+                transcription: "(On)",
+                english: "He",
+                japanese: "彼"
+            },
+            {
+                category: "代名詞",
+                russian: "Она",
+                transcription: "(Ona)",
+                english: "She",
+                japanese: "彼女"
+            },
+            {
+                category: "代名詞",
+                russian: "Мы",
+                transcription: "(My)",
+                english: "We",
+                japanese: "私たち"
+            },
+            {
+                category: "代名詞",
+                russian: "Вы",
+                transcription: "(Vy)",
+                english: "You (plural/formal)",
+                japanese: "あなた方 / あなた (敬語)"
+            },
+            {
+                category: "代名詞",
+                russian: "Они",
+                transcription: "(Oni)",
+                english: "They",
+                japanese: "彼ら / 彼女ら"
+            },
+            {
+                category: "疑問詞",
+                russian: "Что",
+                transcription: "(Chto)",
+                english: "What",
+                japanese: "何"
+            },
+            {
+                category: "疑問詞",
+                russian: "Кто",
+                transcription: "(Kto)",
+                english: "Who",
+                japanese: "誰"
+            },
+            {
+                category: "疑問詞",
+                russian: "Где",
+                transcription: "(Gde)",
+                english: "Where",
+                japanese: "どこ"
+            },
+            {
+                category: "疑問詞",
+                russian: "Когда",
+                transcription: "(Kogda)",
+                english: "When",
+                japanese: "いつ"
+            },
+            {
+                category: "疑問詞",
+                russian: "Почему",
+                transcription: "(Pochemu)",
+                english: "Why",
+                japanese: "なぜ"
+            },
+            {
+                category: "疑問詞",
+                russian: "Как",
+                transcription: "(Kak)",
+                english: "How",
+                japanese: "どのように"
+            },
+            {
+                category: "動詞",
+                russian: "Быть",
+                transcription: "(Byt')",
+                english: "To be",
+                japanese: "～である"
+            },
+            {
+                category: "動詞",
+                russian: "Иметь",
+                transcription: "(Imat')",
+                english: "To have",
+                japanese: "持っている"
+            },
+            {
+                category: "動詞",
+                russian: "Делать",
+                transcription: "(Delat')",
+                english: "To do / To make",
+                japanese: "する / 作る"
+            },
+            {
+                category: "動詞",
+                russian: "Говорить",
+                transcription: "(Govorit')",
+                english: "To speak / To say",
+                japanese: "話す / 言う"
+            },
+            {
+                category: "動詞",
+                russian: "Знать",
+                transcription: "(Znat')",
+                english: "To know",
+                japanese: "知っている"
+            },
+            {
+                category: "動詞",
+                russian: "Понимать",
+                transcription: "(Ponimát')",
+                english: "To understand",
+                japanese: "理解する"
+            },
+            {
+                category: "動詞",
+                russian: "Хотеть",
+                transcription: "(Khotet')",
+                english: "To want",
+                japanese: "欲しい"
+            },
+            {
+                category: "動詞",
+                russian: "Мочь",
+                transcription: "(Moch')",
+                english: "To be able to / Can",
+                japanese: "できる"
+            },
+            {
+                category: "動詞",
+                russian: "Есть",
+                transcription: "(Est')",
+                english: "To eat",
+                japanese: "食べる"
+            },
+            {
+                category: "動詞",
+                russian: "Пить",
+                transcription: "(Pit')",
+                english: "To drink",
+                japanese: "飲む"
+            },
+            {
+                category: "動詞",
+                russian: "Идти",
+                transcription: "(Idti)",
+                english: "To go (by walking)",
+                japanese: "歩いて行く"
+            },
+            {
+                category: "動詞",
+                russian: "Видеть",
+                transcription: "(Videt')",
+                english: "To see",
+                japanese: "見る"
+            },
+            {
+                category: "動詞",
+                russian: "Слышать",
+                transcription: "(Slyshat')",
+                english: "To hear",
+                japanese: "聞く"
+            },
+            {
+                category: "動詞",
+                russian: "Любить",
+                transcription: "(Lyubit')",
+                english: "To love / To like",
+                japanese: "愛する / 好き"
+            },
+            {
+                category: "動詞",
+                russian: "Жить",
+                transcription: "(Zhit')",
+                english: "To live",
+                japanese: "住む / 生きる"
+            },
+            {
+                category: "動詞",
+                russian: "Работать",
+                transcription: "(Rabotat')",
+                english: "To work",
+                japanese: "働く"
+            },
+            {
+                category: "動詞",
+                russian: "Учиться",
+                transcription: "(Uchit'sya)",
+                english: "To study / To learn",
+                japanese: "勉強する / 学ぶ"
+            },
+            {
+                category: "動詞",
+                russian: "Читать",
+                transcription: "(Chitat')",
+                english: "To read",
+                japanese: "読む"
+            },
+            {
+                category: "動詞",
+                russian: "Писать",
+                transcription: "(Pisat')",
+                english: "To write",
+                japanese: "書く"
+            },
+            {
+                category: "名詞",
+                russian: "Человек",
+                transcription: "(Chelovek)",
+                english: "Person",
+                japanese: "人"
+            },
+            {
+                category: "名詞",
+                russian: "Время",
+                transcription: "(Vremya)",
+                english: "Time",
+                japanese: "時間"
+            },
+            {
+                category: "名詞",
+                russian: "День",
+                transcription: "(Den')",
+                english: "Day",
+                japanese: "日"
+            },
+            {
+                category: "名詞",
+                russian: "Ночь",
+                transcription: "(Noch')",
+                english: "Night",
+                japanese: "夜"
+            },
+            {
+                category: "名詞",
+                russian: "Год",
+                transcription: "(God)",
+                english: "Year",
+                japanese: "年"
+            },
+            {
+                category: "名詞",
+                russian: "Дом",
+                transcription: "(Dom)",
+                english: "House / Home",
+                japanese: "家"
+            },
+            {
+                category: "名詞",
+                russian: "Вода",
+                transcription: "(Voda)",
+                english: "Water",
+                japanese: "水"
+            },
+            {
+                category: "名詞",
+                russian: "Еда",
+                transcription: "(Eda)",
+                english: "Food",
+                japanese: "食べ物"
+            },
+            {
+                category: "名詞",
+                russian: "Друг",
+                transcription: "(Drug)",
+                english: "Friend (male)",
+                japanese: "友達 (男性)"
+            },
+            {
+                category: "名詞",
+                russian: "Имя",
+                transcription: "(Imya)",
+                english: "Name",
+                japanese: "名前"
+            },
+            {
+                category: "形容詞",
+                russian: "Хороший",
+                transcription: "(Khoroshiy)",
+                english: "Good",
+                japanese: "良い"
+            },
+            {
+                category: "形容詞",
+                russian: "Плохой",
+                transcription: "(Plokhoy)",
+                english: "Bad",
+                japanese: "悪い"
+            },
+            {
+                category: "形容詞",
+                russian: "Большой",
+                transcription: "(Bol'shoy)",
+                english: "Big / Large",
+                japanese: "大きい"
+            },
+            {
+                category: "形容詞",
+                russian: "Маленький",
+                transcription: "(Malen'kiy)",
+                english: "Small / Little",
+                japanese: "小さい"
+            },
+            {
+                category: "形容詞",
+                russian: "Новый",
+                transcription: "(Novyy)",
+                english: "New",
+                japanese: "新しい"
+            },
+            {
+                category: "形容詞",
+                russian: "Старый",
+                transcription: "(Staryy)",
+                english: "Old",
+                japanese: "古い / 年老いた"
+            },
+            {
+                category: "形容詞",
+                russian: "Красивый",
+                transcription: "(Krasivyy)",
+                english: "Beautiful",
+                japanese: "美しい"
+            },
+            {
+                category: "形容詞",
+                russian: "Важный",
+                transcription: "(Vazhnyy)",
+                english: "Important",
+                japanese: "重要な"
+            },
+            {
+                category: "形容詞",
+                russian: "Трудный",
+                transcription: "(Trudnyy)",
+                english: "Difficult",
+                japanese: "難しい"
+            },
+            {
+                category: "形容詞",
+                russian: "Лёгкий",
+                transcription: "(Lyogkiy)",
+                english: "Easy / Light",
+                japanese: "簡単な / 軽い"
+            },
+            {
+                category: "副詞・前置詞",
+                russian: "Здесь",
+                transcription: "(Zdes')",
+                english: "Here",
+                japanese: "ここ"
+            },
+            {
+                category: "副詞・前置詞",
+                russian: "Там",
+                transcription: "(Tam)",
+                english: "There",
+                japanese: "そこ / あそこ"
+            },
+            {
+                category: "副詞・前置詞",
+                russian: "Сейчас",
+                transcription: "(Seychas)",
+                english: "Now",
+                japanese: "今"
+            },
+            {
+                category: "副詞・前置詞",
+                russian: "Сегодня",
+                transcription: "(Segodnya)",
+                english: "Today",
+                japanese: "今日"
+            },
+            {
+                category: "副詞・前置詞",
+                russian: "Завтра",
+                transcription: "(Zavtra)",
+                english: "Tomorrow",
+                japanese: "明日"
+            },
+            {
+                category: "副詞・前置詞",
+                russian: "Вчера",
+                transcription: "(Vchera)",
+                english: "Yesterday",
+                japanese: "昨日"
+            },
+            {
+                category: "副詞・前置詞",
+                russian: "Очень",
+                transcription: "(Ochen')",
+                english: "Very",
+                japanese: "とても"
+            },
+            {
+                category: "副詞・前置詞",
+                russian: "Да",
+                transcription: "(Da)",
+                english: "Yes",
+                japanese: "はい"
+            },
+            {
+                category: "副詞・前置詞",
+                russian: "Нет",
+                transcription: "(Net)",
+                english: "No",
+                japanese: "いいえ"
+            },
+            {
+                category: "副詞・前置詞",
+                russian: "Пожалуйста",
+                transcription: "(Pozhaluysta)",
+                english: "Please / You're welcome",
+                japanese: "お願いします / どういたしまして"
+            },
+            {
+                category: "副詞・前置詞",
+                russian: "Спасибо",
+                transcription: "(Spasibo)",
+                english: "Thank you",
+                japanese: "ありがとう"
+            },
+            {
+                category: "副詞・前置詞",
+                russian: "Извините",
+                transcription: "(Izvinite)",
+                english: "Excuse me / Sorry",
+                japanese: "すみません / ごめんなさい"
+            },
+            {
+                category: "数字",
+                russian: "Один",
+                transcription: "(Odin)",
+                english: "One",
+                japanese: "1"
+            },
+            {
+                category: "数字",
+                russian: "Два",
+                transcription: "(Dva)",
+                english: "Two",
+                japanese: "2"
+            },
+            {
+                category: "数字",
+                russian: "Три",
+                transcription: "(Tri)",
+                english: "Three",
+                japanese: "3"
+            },
+            {
+                category: "数字",
+                russian: "Четыре",
+                transcription: "(Chetyre)",
+                english: "Four",
+                japanese: "4"
+            },
+            {
+                category: "数字",
+                russian: "Пять",
+                transcription: "(Pyat')",
+                english: "Five",
+                japanese: "5"
+            },
+            {
+                category: "数字",
+                russian: "Шесть",
+                transcription: "(Shest')",
+                english: "Six",
+                japanese: "6"
+            },
+            {
+                category: "数字",
+                russian: "Семь",
+                transcription: "(Sem')",
+                english: "Seven",
+                japanese: "7"
+            },
+            {
+                category: "数字",
+                russian: "Восемь",
+                transcription: "(Vosem')",
+                english: "Eight",
+                japanese: "8"
+            },
+            {
+                category: "数字",
+                russian: "Девять",
+                transcription: "(Devyat')",
+                english: "Nine",
+                japanese: "9"
+            },
+            {
+                category: "数字",
+                russian: "Десять",
+                transcription: "(Desyat')",
+                english: "Ten",
+                japanese: "10"
+            }
+        ];
+
+        // アプリ状態
+        const appState = {
+            darkMode: true,
+            englishMode: true,
+            speechEnabled: 'speechSynthesis' in window
+        };
+
+        // DOM要素
+        const wordGrid = document.getElementById('wordGrid');
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const themeText = document.getElementById('themeText');
+        const languageToggle = document.getElementById('languageToggle');
+        const languageIcon = document.getElementById('languageIcon');
+        const languageText = document.getElementById('languageText');
+        const playAllAudioBtn = document.getElementById('playAllAudio');
+        const shuffleWordsBtn = document.getElementById('shuffleWords');
+        const notification = document.getElementById('notification');
+
+        // 初期化
+        function initApp() {
+            loadPreferences();
+            renderWords();
+            setupEventListeners();
+            setupServiceWorker();
+            showNotification('アプリの準備ができました！', 'success');
+        }
+
+        // 設定の読み込み
+        function loadPreferences() {
+            const savedDarkMode = localStorage.getItem('darkMode');
+            const savedEnglishMode = localStorage.getItem('englishMode');
+            
+            if (savedDarkMode !== null) {
+                appState.darkMode = savedDarkMode === 'true';
+            }
+            
+            if (savedEnglishMode !== null) {
+                appState.englishMode = savedEnglishMode === 'true';
+            }
+            
+            updateTheme();
+            updateLanguage();
+        }
+
+        // 単語の表示
+        function renderWords() {
+            wordGrid.innerHTML = '';
+            
+            words.forEach((word, index) => {
+                const card = document.createElement('div');
+                card.className = 'word-card';
+                card.innerHTML = `
+                    <div class="word-header">
+                        <span class="category">${word.category}</span>
+                        <button class="audio-btn play-audio" data-index="${index}">
+                            🔊 再生
+                        </button>
+                    </div>
+                    <div class="russian-word">${word.russian}</div>
+                    <div class="transcription">${word.transcription}</div>
+                    <div class="translation" id="translation-${index}">
+                        ${appState.englishMode ? word.english : word.japanese}
+                    </div>
+                `;
+                
+                wordGrid.appendChild(card);
+            });
+            
+            // 音声再生ボタンのイベントリスナーを追加
+            document.querySelectorAll('.play-audio').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const index = parseInt(e.target.dataset.index);
+                    speakRussian(words[index].russian);
+                });
+            });
+            
+            // カードクリックで翻訳を切り替え
+            document.querySelectorAll('.word-card').forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    const translationEl = document.getElementById(`translation-${index}`);
+                    const currentText = translationEl.textContent;
+                    const word = words[index];
+                    
+                    if (currentText === word.english) {
+                        translationEl.textContent = word.japanese;
+                    } else {
+                        translationEl.textContent = word.english;
+                    }
+                });
+            });
+        }
+
+        // 音声合成
+        function speakRussian(text) {
+            if (!appState.speechEnabled) {
+                showNotification('音声合成がサポートされていません', 'error');
+                return;
+            }
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ru-RU';
+            utterance.rate = 0.8;
+            utterance.pitch = 1;
+            utterance.volume = 1;
+            
+            // 利用可能な音声からロシア語音声を探す
+            const voices = speechSynthesis.getVoices();
+            const russianVoice = voices.find(voice => 
+                voice.lang.startsWith('ru') || voice.name.includes('Russian')
+            );
+            
+            if (russianVoice) {
+                utterance.voice = russianVoice;
+            }
+            
+            speechSynthesis.speak(utterance);
+            
+            utterance.onstart = () => {
+                showNotification(`発音: ${text}`, 'info');
+            };
+            
+            utterance.onerror = (event) => {
+                console.error('Speech synthesis error:', event);
+                showNotification('音声再生に失敗しました', 'error');
+            };
+        }
+
+        // 全ての音声を再生
+        function playAllAudio() {
+            if (!appState.speechEnabled) {
+                showNotification('音声合成がサポートされていません', 'error');
+                return;
+            }
+            
+            let index = 0;
+            
+            function playNext() {
+                if (index < words.length) {
+                    const word = words[index];
+                    speakRussian(word.russian);
+                    
+                    // 次の単語を再生（少し間隔をあけて）
+                    index++;
+                    setTimeout(playNext, 2000);
+                }
+            }
+            
+            playNext();
+            showNotification('全ての単語の発音を順番に再生します', 'info');
+        }
+
+        // 単語をシャッフル
+        function shuffleWords() {
+            for (let i = words.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [words[i], words[j]] = [words[j], words[i]];
+            }
+            renderWords();
+            showNotification('単語の順序をシャッフルしました', 'info');
+        }
+
+        // テーマ切り替え
+        function toggleTheme() {
+            appState.darkMode = !appState.darkMode;
+            updateTheme();
+            localStorage.setItem('darkMode', appState.darkMode);
+        }
+
+        function updateTheme() {
+            if (appState.darkMode) {
+                document.body.classList.remove('light-mode');
+                document.body.classList.add('dark-mode');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'ライトモード';
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.body.classList.add('light-mode');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'ダークモード';
+            }
+        }
+
+        // 言語切り替え
+        function toggleLanguage() {
+            appState.englishMode = !appState.englishMode;
+            updateLanguage();
+            localStorage.setItem('englishMode', appState.englishMode);
+            renderWords();
+        }
+
+        function updateLanguage() {
+            if (appState.englishMode) {
+                languageIcon.textContent = '🇯🇵';
+                languageText.textContent = '日本語表示';
+            } else {
+                languageIcon.textContent = '🇺🇸';
+                languageText.textContent = '英語表示';
+            }
+        }
+
+        // 通知表示
+        function showNotification(message, type = 'info') {
+            notification.textContent = message;
+            notification.style.display = 'block';
+            
+            // タイプに応じたスタイル
+            notification.style.backgroundColor = type === 'error' ? '#e53e3e' : 
+                                               type === 'success' ? '#38a169' : 
+                                               '#4299e1';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        // イベントリスナーの設定
+        function setupEventListeners() {
+            themeToggle.addEventListener('click', toggleTheme);
+            languageToggle.addEventListener('click', toggleLanguage);
+            playAllAudioBtn.addEventListener('click', playAllAudio);
+            shuffleWordsBtn.addEventListener('click', shuffleWords);
+            
+            // 音声リストの準備を待つ
+            if (appState.speechEnabled) {
+                speechSynthesis.onvoiceschanged = () => {
+                    console.log('Voices loaded');
+                };
+            }
+            
+            // PWAインストールボタン（オプション）
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                // インストールプロンプトを保存して後で使用可能
+                window.deferredPrompt = e;
+                
+                // インストールボタンを表示（オプション）
+                showNotification('このアプリをホーム画面に追加できます', 'info');
+            });
+        }
+
+        // Service Workerの設定
+        function setupServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('sw.js')
+                        .then(registration => {
+                            console.log('ServiceWorker登録成功:', registration.scope);
+                        })
+                        .catch(error => {
+                            console.log('ServiceWorker登録失敗:', error);
+                        });
+                });
+            }
+        }
+
+        // アプリの初期化
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
